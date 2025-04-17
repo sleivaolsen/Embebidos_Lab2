@@ -1,0 +1,51 @@
+//Notas Lab 2
+
+
+int bufferX[100];
+int bufferY[100];
+int bufferZ[100];
+
+//pseudo ADC
+//ocurre_una_interrupcion_de_ADC{
+//	valorADC a bufferX[contador];
+//	valorADC a bufferY[contador];
+//	valorADC a bufferZ[contador];
+//	contador++;
+//	if(contador==100){contador=0;}
+//}
+
+//promedio
+int promedio(int vector[largo]){
+	int suma=0;
+	for(i=0;i<largo;i++){
+		suma+=vector[i];
+	}
+	int media=suma/largo;
+	return media;
+}
+
+//convertir valorADC a ángulos?
+int theta(int valor_ADC){
+	theta=arcsin(10*(vsal-vreposo)/vcc);	//arcsin(10*(x)), x=[-0.5, 0.5]
+}
+
+//int angulo(int promedio){	//no sirve porque el ángulo no crece de forma lineal
+//	ang=(180*promedio/65535)-90
+//	return ang;
+
+//	tr=0;
+//void barrido(num){
+//	tr++;
+//	switch(transistor){
+//	case 1:
+//	if(num<90){ 7segmentos(signo menos);}
+//	else{signo Off;}
+//	break;
+	case 2:
+	7segmentos(num/10);
+	break;
+	case 3:
+	7segmentos(num%10);
+	tr=0;
+	break;
+}			
