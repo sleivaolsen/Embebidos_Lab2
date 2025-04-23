@@ -99,7 +99,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   uint32_t time = 0, ADC_time = 0;
 	uint16_t promedio[3];
-	uint16_t angulo[3];
+	int16_t angulo[3];
 	uint8_t contador = 0;
 	uint16_t muestrasX[100];
 	uint16_t muestrasY[100];
@@ -132,6 +132,8 @@ int main(void)
 	  //esto debe ir en una interrupción.
 	  //Por defecto, Vreposo=32767
 	  if(boton1==1&&boton1_ant==0){
+		  // mejor activar un flag para que las mediciones modifiquen Vrep. 
+		  // luego, al presionar el botón, se fija el valor para ese eje.
 		  if(modo<2){		//Esta calibración simplemente cambia el valor de reposo al momento de presionar el botón
 			  int vrep[modo] = promedio[modo]; //pensar en como seguir adquiriendo valores mientras se calibra...
 			  modo++;			  //...y que así guarde el valor al presionar para avanzar al siguiente eje
@@ -141,9 +143,7 @@ int main(void)
 			  break;
 			  //termina la calibración al presionar el botón por tercera vez
 		  }	  
-	  }
-
-	  //cualquier angulo visualizado debería mostrar un cero al estar calibrado en reposo
+	  }	  //cualquier angulo visualizado debería mostrar un cero al estar calibrado en reposo
 	  
 	  
 //cálculo de cada ángulo
