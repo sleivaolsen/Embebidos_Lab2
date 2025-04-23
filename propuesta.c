@@ -123,15 +123,35 @@ int main(void)
 		  }
 		  ADC_time = time;
 	  }
-	  //promedio de cada buffer
+//promedio de cada buffer
 	  promedio[0]=prom(muestrasX);
 	  promedio[1]=prom(muestrasY);
 	  promedio[2]=prom(muestrasZ);
-	  //cálculo de cada ángulo
+//calibración
+	  //determina V de reposo al presionar pulsador del microcontrolador
+	  //esto debe ir en una interrupción.
+	  //Por defecto, Vreposo=32767
+	  if(boton1==1&&boton1_ant==0){
+		  if(modo<2){		//Esta calibración simplemente cambia el valor de reposo al momento de presionar el botón
+			  int vrep[modo] = promedio[modo]; //pensar en como seguir adquiriendo valores mientras se calibra...
+			  modo++;			  //...y que así guarde el valor al presionar para avanzar al siguiente eje
+		  }
+		  else{
+			  modo=0;
+			  break;
+			  //termina la calibración al presionar el botón por tercera vez
+		  }	  
+	  }
+
+	  //cualquier angulo visualizado debería mostrar un cero al estar calibrado en reposo
+	  
+	  
+//cálculo de cada ángulo
+	  //angulo[i]=arcsin(promedio[i] - Vreposo)*10/3.3
 	  
 	  //visualización numérica y lumínica
 
-	  //calibración
+
 	  
     /* USER CODE END WHILE */
 
